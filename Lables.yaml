@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lbl-node-depl
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 8080
+      nodeSelector:
+         category: db_node
